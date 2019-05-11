@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# System user model
+AUTH_USER_MODEL = 'user.InstaUser'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -37,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'permission',
+    'utils',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +106,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
+
+EN = 'en'
+SV = 'sv'
+
+LANGUAGES = (
+    (EN, _('English')),
+    (SV, _('Swedish')),
+)
+
+LOCALE_PATHS = [
+    BASE_DIR + '/utils/locale/',
+]
 
 LANGUAGE_CODE = 'en-us'
 

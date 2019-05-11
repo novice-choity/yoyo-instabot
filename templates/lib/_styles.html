@@ -1,0 +1,23 @@
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" type="text/css" href="{% static "admin-lte/dist/css/AdminLTE.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "admin-lte/dist/css/skins/_all-skins.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "icheck/skins/square/blue.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "conflicts/conflicts.css" %}">
+    <!-- for custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/custom.css" %}">
+    <!-- for select2 -->
+    <link rel="stylesheet" type="text/css" href="{% static "js/plugins/select2/select2.css" %}">
+    <!-- for bootstrap notification -->
+    <link rel="stylesheet" type="text/css" href="{% static "js/plugins/bootstrap-notify/animate.css" %}">
+    <!-- for bootstrap date picker -->
+    <link rel="stylesheet" type="text/css"
+          href="{% static "js/plugins/bootstrap-datepicker/bootstrap-datepicker3.css" %}">
+    <!-- for sweet alert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+{% endblock %}

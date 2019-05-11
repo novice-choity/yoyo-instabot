@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block body_class %}login-page{% endblock %}
+{% block title %}{% trans "Bostad" %}{% endblock %}
+{% block body %}
+    <div class="login-box">
+        {% block logo %}
+            <div class="login-logo">
+                <a href="{% block logo_href %}/{% endblock %}">{% block logo_text %}<b>Lands</b>Hem{% endblock %}</a>
+            </div>
+        {% endblock %}
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">{% trans "Register a new membership" %}</p>
+            {% block login_errors %}
+                {% if form.errors and not form.non_field_errors %}
+                    <p class="alert alert-danger">
+                        {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}
+                            {% trans "Please correct the errors below." %}{% endif %}
+                    </p>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+            {% endblock login_errors %}
+
+            {% block login_form %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <p class="login-box-msg" style="color: red;">{{ form.non_field_errors }}</p>
+                    {% endif %}
+
+                    <div class="form-group has-feedback">
+                        {{ form.first_name }}
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        {% if form.first_name.errors %}
+                            <span class="help-block">{{ form.first_name.errors }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group has-feedback">
+                        {{ form.last_name }}
+                        <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+                        {% if form.last_name.errors %}
+                            <span class="help-block">{{ form.last_name.errors }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group has-feedback">
+                        {{ form.email }}
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        {% if form.email.errors %}
+                            <span class="help-block">{{ form.email.errors }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group has-feedback {% if form.password.errors %}has-error{% endif %}">
+                        {{ form.password }}
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        {% if form.password.errors %}
+                            <span class="help-block">{{ form.password.errors }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group has-feedback">
+                        {{ form.retype_password }}
+                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                        {% if form.retype_password.errors %}
+                            <span class="help-block">{{ form.retype_password.errors }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            {% block login_form_links %}
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="btn-terms" type="checkbox"> I agree to the <a href="#">terms</a>
+                                    </label>
+                                </div>
+                            {% endblock %}
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btn-register" type="submit"
+                                    class="btn btn-primary btn-block btn-flat" disabled>{% trans "Register" %}</button>
+                        </div>
+                    </div>
+                </form>
+            {% endblock login_form %}
+            {% block signup %}
+                <a href="{% url 'url_login' %}" class="text-center">{% trans "I already have a membership" %}</a>
+            {% endblock signup %}
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        // disabling search result for select2 search box
+        $(document).ready(function () {
+            $(".select2").select2({
+                minimumResultsForSearch: -1
+            });
+            $("#{{ form.person_number.auto_id }}").prop('maxlength', '13');
+        });
+        $("#btn-terms").on('change', function () {
+            var checked = $(this).prop('checked');
+            if (checked) {
+                $("#btn-register").attr('disabled', false);
+            } else {
+                $("#btn-register").attr('disabled', true);
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "jquery/dist/jquery-ui.min.js" %}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %} "></script>
+    <script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>
+    <!-- for custom js -->
+    <script src="{% static "js/custom.js" %}"></script>
+    <!-- for select2 -->
+    <script src="{% static "js/plugins/select2/select2.js" %}"></script>
+    <!-- for fastclick -->
+    <script src="{% static "js/plugins/fastclick/fastclick.js" %}"></script>
+    <!-- for bootstrap notification -->
+    <script src="{% static "js/plugins/bootstrap-notify/bootstrap-notify.js" %}"></script>
+    <!-- for bootstrap datetime picker -->
+    <script src="{% static "js/plugins/bootstrap-datepicker/bootstrap-datepicker.js" %}"></script>
+    <!-- for sweet alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"
+            type="text/javascript"></script>
+
+{% endblock %}

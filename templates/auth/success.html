@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block body %}
+
+    {% block content %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-center" style="padding: 30px 20px 30px 20px">
+                    <h1>{% trans "Registration complete" %}</h1>
+                    <img src="{% static 'images/reg-success.png' %}" width="150">
+                    <h4 class="text-muted">{% trans "Your registration is complete." %}
+                        <a href="{% url "url_login" %}">{% trans "Click here" %}</a> {% trans "to login into your account" %}
+                    </h4>
+
+                </div>
+
+            </div>
+        </div>
+    {% endblock content %}
+{% endblock %}
