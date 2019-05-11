@@ -1,0 +1,32 @@
+.no-record-found {
+    text-align: center;
+    padding: 40px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #cccccc;
+}
+
+/* button dropdown left show*/
+.dropdown_leftify {
+    right: 0;
+    left: auto;
+    min-width: 60px;
+}
+
+.form-section-title {
+    font-size: 16px;
+    border-bottom: 1px solid #00c0ef;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
