@@ -7,8 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 TIMEZONE_CHOICES = [(t, t) for t in pytz.common_timezones]
 
 # System user groups
-ADMINUSER = 'au'
-NORMALUSER = 'nu'
+ADMINUSER = 'AU'
+NORMALUSER = 'NU'
 
 SYSTEM_USER_GROUP = (
     (ADMINUSER, _('Admin')),
