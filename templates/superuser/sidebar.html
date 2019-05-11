@@ -1,0 +1,41 @@
+{% extends "lib/_main_sidebar.html" %}
+
+{% load i18n static %}
+
+{% block nav_links_outer %}
+    {% block nav_links %}
+
+        <li class="header">{% trans "Administrator" %}</li>
+
+
+        <li id="id_menu_superuser_mypage">
+            <a href="{% url 'url_superuser_home' %}">
+                <i class="fa fa-home" aria-hidden="true"></i> <span>{% trans "Dashboard" %}</span>
+            </a>
+        </li>
+
+        <li id="id_menu_superuser_pending_property">
+            <a href="#">
+                <i class="fa fa-building-o" aria-hidden="true"></i> <span>{% trans "Pending Profiles" %}</span>
+            </a>
+        </li>
+
+        <li id="id_menu_superuser_approved_property">
+            <a href="#">
+                <i class="fa fa-building-o" aria-hidden="true"></i> <span>{% trans "Approved Profiles" %}</span>
+            </a>
+        </li>
+
+        <li id="id_menu_superuser_edit_account">
+            <a href="{% url 'url_superuser_edit_account' %}">
+                <i class="fa fa-unlock" aria-hidden="true"></i> <span>{% trans "Account and Password" %}</span>
+            </a>
+        </li>
+        <li id="id_menu_superuser_logout">
+            <a href="{% url 'url_logout' %}">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> <span>{% trans "Logout" %}</span>
+            </a>
+        </li>
+
+    {% endblock %}
+{% endblock %}

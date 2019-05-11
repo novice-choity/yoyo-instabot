@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'permission',
     'utils',
     'client',
+    'superuser',
 ]
 
 MIDDLEWARE = [

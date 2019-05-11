@@ -1,0 +1,69 @@
+{% extends "superuser/base.html" %}
+{% load i18n static %}
+
+{% block page_name %}{% trans "Account" %}{% endblock %}
+{% block page_description %}{% trans "Change your password" %}{% endblock %}
+
+{% block content %}
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% trans "Change password" %}</h3>
+        </div>
+        <form method="post" action="" class="form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <p style="color: red;">{{ form.non_field_errors }}</p>
+            {% endif %}
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback {% if  form.old_password.errors %}has-error{% endif %}">
+                            <label for="{{ form.old_password.auto_id }}">{% trans 'Current Password' %}</label>
+                            {{ form.old_password }}
+                            {% if  form.old_password.errors %}
+                                <span class="help-block">{{ form.old_password.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group has-feedback {% if  form.new_password1.errors %}has-error{% endif %}">
+                            <label for="{{ form.new_password1.auto_id }}">{% trans 'New Password' %}</label>
+                            {{ form.new_password1 }}
+                            {% if  form.new_password1.errors %}
+                                <span class="help-block">{{ form.new_password1.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group has-feedback {% if  form.new_password2.errors %}has-error{% endif %}">
+                            <label for="{{ form.new_password2.auto_id }}">{% trans 'Repeat Password' %}</label>
+                            {{ form.new_password2 }}
+                            {% if  form.new_password2.errors %}
+                                <span class="help-block">{{ form.new_password2.errors }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+                <ul class="list-inline no-bottom-margin">
+                    <li>
+                        <a role="button" href="{% url 'url_superuser_home' %}"
+                           class="btn btn-default"><i class="fa fa-times fa-fw"></i> {% trans "Cancel" %}</a>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-primary"><i
+                                class="fa fa-save fa-fw"></i> {% trans "Update" %}</button>
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+{% endblock content %}
+{% block extra_js %}
+    <script>
+        $("#id_menu_superuser_edit_account").addClass('active');
+    </script>
+{% endblock %}
