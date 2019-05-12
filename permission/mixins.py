@@ -18,6 +18,9 @@ from django.utils import six
 from django.utils.encoding import force_text
 from django.utils.timezone import now
 
+from client.models import Profile, ACTIVE
+from utils.helper import get_obj_or_none
+
 if DJANGO_VERSION >= (1, 10, 0):
     _is_authenticated = lambda user: user.is_authenticated  # noqa
 else:
@@ -448,18 +451,18 @@ class RecentLoginRequiredMixin(LoginRequiredMixin):
         return resp
 
 
-# class TenantRequiredMixin(AccessMixin):
-#     """
-#     Mixin class that controls the tenant user access
-#     """
-#
-#     def dispatch(self, request, *args, **kwargs):
-#         if not request.user.is_staff or not (request.user.user_type == TENANT):
-#             return self.handle_no_permission(request)
-#
-#         return super(TenantRequiredMixin, self).dispatch(request, *args, **kwargs)
-#
-#
+class ClientRequiredMixin(AccessMixin):
+    """
+    Mixin class that controls the tenant user access
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        active_client = get_obj_or_none(Profile, user=request.user, status=ACTIVE)
+        if not request.user.is_staff or not active_client:
+            return self.handle_no_permission(request)
+        return super(ClientRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+
 # class OwnerRequiredMixin(AccessMixin):
 #     """
 #     Mixin class that controls the owner user access

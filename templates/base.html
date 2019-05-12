@@ -17,7 +17,7 @@
 
     {% block extra_head %}{% endblock %}
 </head>
-<body class="hold-transition skin-red-light sidebar-mini
+<body class="hold-transition {% block theme_color %}skin-red-light{% endblock %} sidebar-mini
         {% block body_class %}{% block bodyclass %}{% endblock %}{% endblock %}">
 
 {% block body %}

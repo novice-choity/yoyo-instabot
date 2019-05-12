@@ -11,3 +11,6 @@ url_registration_success = 'url_registration_success'
 # Superuser
 url_superuser_home = 'url_superuser_home'
 url_superuser_edit_account = 'url_superuser_edit_account'
+
+# Client
+url_client_home = 'url_client_home'
