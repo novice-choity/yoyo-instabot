@@ -143,3 +143,6 @@ db.sqlite3
 local_settings.py
 db.py
 static/
+config/
+instabot.log
+secret.txt
