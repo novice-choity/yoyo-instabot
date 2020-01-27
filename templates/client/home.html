@@ -2,69 +2,147 @@
 {% load i18n static %}
 
 {% block page_name %}{% trans "Dashboard" %}{% endblock %}
-{% block page_description %}{% trans "Overview and Statistics" %}{% endblock %}
+{% block page_description %}{% trans "Overview and Statistics for " %}{{ user_name }}{% endblock %}
 
 {% block content %}
-    <!-- Info boxes -->
-    <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+    {% if user_name %}
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">{% trans "Profiles" %}</span>
-                    <span class="info-box-number">90<small>%</small></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{% trans "Profiles" %}</span>
+                        <span class="info-box-number">90<small>%</small></span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">{% trans "Likes" %}</span>
-                    <span class="info-box-number">41,410</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{% trans "Likes" %}</span>
+                        <span class="info-box-number">41,410</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
+            <!-- /.col -->
 
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
 
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">{% trans "Posts" %}</span>
-                    <span class="info-box-number">760</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{% trans "Posts" %}</span>
+                        <span class="info-box-number">760</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
-                <div class="info-box-content">
-                    <span class="info-box-text">{% trans "Tags" %}</span>
-                    <span class="info-box-number">2,000</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{% trans "Tags" %}</span>
+                        <span class="info-box-number">2,000</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->{% endblock content %}
+        {% if locations %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>{% trans "#" %}</th>
+                            <th>{% trans "name" %}</th>
+                            <th>{% trans "Address" %}</th>
+                            <th>{% trans "City" %}</th>
+                            <th>{% trans "Facebook Places id" %}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for location in locations %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+                                    <h4>{{ location.location.name }}</h4>
+                                </td>
+                                <td>
+                                    <p>
+                                        {{ location.location.address }}
+                                    </p>
+                                </td>
+                                <td>
+                                    <h4> {{ location.location.city }}</h4>
+                                </td>
+                                <td>
+                                    {{ location.location.facebook_places_id }}
+                                </td>
+                                <td class="text-left no-print">
+{#                                    <div class="btn-group btn-group-sm">#}
+                                    {#                                        <button type="button" class="btn btn-info"><i#}
+                                    {#                                                class="fa fa-cog"></i>#}
+                                    {#                                        </button>#}
+                                    {#                                        <button type="button" class="btn btn-info dropdown-toggle"#}
+                                    {#                                                data-toggle="dropdown">#}
+                                    {#                                            <span class="caret"></span>#}
+                                    {#                                        </button>#}
+                                    {#                                        <ul class="dropdown-menu dropdown_leftify" role="menu">#}
+                                    {#                                            <li>#}
+                                    {#                                                <a href="#">{% trans "Details" %}</a>#}
+                                    {#                                            </li>#}
+                                    {#                                            <li>#}
+                                    {#                                                <a href="#">{% trans "Edit" %}</a>#}
+                                    {#                                            </li>#}
+                                    {#                                        </ul>#}
+                                    {#                                    </div>#}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        {% else %}
+            <div class="no-record-found">
+                <i class="fa fa-building-o fa-5x" aria-hidden="true"></i>
+                <p class="lead">{% trans "No location record found" %} <br>
+                    <span class="subheader">{% trans "Please try again!" %}</span>
+                </p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="no-record-found">
+            <i class="fa fa-building-o fa-5x" aria-hidden="true"></i>
+            <p class="lead">{% trans "Please, carefully check your instagram username and password" %} <br>
+                <span class="subheader">{% trans "To configure instagram go to 'Profile' page" %}</span>
+            </p>
+        </div>
+    {% endif %}
+    <!-- /.row -->
+{% endblock content %}
 
 {% block extra_js %}
     <script>

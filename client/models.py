@@ -17,6 +17,8 @@ class Profile(models.Model):
                              related_name='profile')
     user_type = models.CharField(verbose_name=_('profile type'), max_length=100, choices=SYSTEM_USER_GROUP,
                                  default=NORMALUSER)
+    instagram_username = models.CharField(max_length=30, verbose_name='Instagram username', null=True, blank=True)
+    instagram_password = models.CharField(max_length=50, verbose_name='Instagram Password', null=True, blank=True)
     status = models.CharField(max_length=30, choices=STATUS_CHOICE, default=PENDING, verbose_name='status')
 
     def __str__(self):

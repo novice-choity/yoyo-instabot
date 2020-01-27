@@ -14,3 +14,4 @@ url_superuser_edit_account = 'url_superuser_edit_account'
 
 # Client
 url_client_home = 'url_client_home'
+url_client_profile_update = 'url_client_profile_update'
